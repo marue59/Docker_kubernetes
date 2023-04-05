@@ -1,0 +1,27 @@
+version : '3'
+services:
+  mysql-server: #container
+    container_name: mysql
+    image: mysql # a connaitre ou a chercher en distance
+    environment: # var d'env
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    volumes: # def volume
+      #-  :containerPath:ro # bindmound
+      - sql-data:/var/lib/mysql
+  mysql-client:
+    container_name: mysql-client
+    image: mysql
+    environment: # var d'env
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+volumes: 
+  sql-data: 
+
+
+  #commande : 
+  # etre au bone endroit = dans le dossier docker compose
+  # docker compose up -d
+  # => fait un reseua le volume et le container 
+
+# docker ps
+# docker compose down = stop 
+# docker compose down -l 

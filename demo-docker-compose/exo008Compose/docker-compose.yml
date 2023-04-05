@@ -1,0 +1,31 @@
+version : '3'
+services:
+  mysql-server: 
+    container_name: database
+    build: .
+    env_file:
+      - ./env/database.env
+    volumes: 
+      - volSql:/var/lib/mysql
+    restart: on-failure
+  python:
+    container_name: python-app
+    image: python-app
+    build: .
+    depends_on:
+      - mysql-server
+    ports: 
+      - "8080:5000"
+    
+volumes: 
+  volSql: 
+
+
+  #commande : 
+  # etre au bone endroit = dans le dossier docker compose
+  # docker compose up -d
+  # => fait un reseua le volume et le container 
+
+# docker ps
+# docker compose down = stop 
+# docker compose down -l 
